@@ -171,61 +171,7 @@ int State::evaluate() {
   return total;
 }
 
-// int State::evaluate() {
-//   int eat_points[7] = {0, 5, 20, 50, 40, 100, 100};
-//   int get_eaten_points[7] = {0, 0, 50, 80, 40, 300, 777};
-//   for (int i = 0; i < 6; ++i) {
-//     for (int j = 0; j < 5; ++j) {
-//       // we don't know if we can be white or black
-//       // TODO:
-//       // assume a simple heuristic where we are assumed always white
-//       // if our minmax is evaluating white 
-//       if (this->player == 0) {
-//         // evaluate white
-//         // 2 cases 
-//         // 1.moving without possibility of eating 
-//         // 2.with possibility of eating
-//         // DEFN:
-//         // this means that this state our position of the piece
-//         // will not get eaten or can eat next turn 
-//         // make super many if case
-//         if (this->board.board[0][i][j] == pawn) {
-//           // check legal move of pawn
-//           // see black board if there is a piece in the legal move
-//           // if there is, check what piece is it
-//           // increase points depending on eat_points
-//           // Then, you subtract by 
 
-//         } else if (this->board.board[0][i][j] == rook) {
-
-//         } else if (this->board.board[0][i][j] == knight) {
-
-//         } else if (this->board.board[0][i][j] == bishop) {
-
-//         } else if (this->board.board[0][i][j] == queen) {
-
-//         } else if (this->board.board[0][i][j] == king) {
-
-//         } else {
-
-//         }
-        
-
-//         return ;
-//       } else {
-//         // black turn
-//         // check black state board and 
-//         if () {
-//           // check legal move of black pawn
-//           // can it eat our piece?
-//           // if it can negative points on get_eaten_point
-          
-//         }
-//       }
-//     }
-    
-//   }
-// }
 
 
 
