@@ -80,7 +80,7 @@
       { 0, 0, 0, 0, 0 },
       { 0, 0, 0, 0, 0},
       { 5, 5, 10, -5, -10},
-      { 10, 10, 20, 0, 0 },
+      { 10, 10, 20, -5, -10 },
       { 10, 10, 25, 10, 10 },
       { 0, 0, 0, 0, 0 },
     },
@@ -147,7 +147,7 @@ int State::evaluate() {
   int ourEval=0;
   int enemyEval = 0;
 
-  int values[8]={0,1,3,3,5,9,200};
+  int values[8]={0,2,6,7,8,20,100};
   
   for (int i = 0; i < 6; i++) {
     for (int j = 0; j < 5; j++) {
@@ -158,6 +158,11 @@ int State::evaluate() {
 
       ourEval+=(values[(int)(this->board.board[this->player][i][j])]) + weights[this->player][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
       enemyEval+=(values[(int)(this->board.board[1-this->player][i][j])]) + weights[this->player][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
+
+    
+      // ourEval+=(values[(int)(this->board.board[this->player][i][j])]); // Add value for player's pieces
+      // enemyEval+=(values[(int)(this->board.board[1-this->player][i][j])]); // Add value for player's pieces
+
 
     //  whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
     //   blackEval+=(values[(int)(this->board.board[1][i][j])]); // Add value for player's p

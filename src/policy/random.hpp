@@ -10,5 +10,6 @@
 class Random{
 public:
   static Move get_move(State *state, int depth);
-  static int minimax(State *node, int depth, int maximizingPlayer,int alpha, int beta);
+  static int minimax(State *node, int depth, bool maximizingPlayer,int alpha, int beta);
+  // int minimax(State* child, int depth , bool maximizingPlayer)
 };

@@ -20,7 +20,7 @@ static std::string x_axis = "ABCDE";
 
 //Minimax code
 
-int Random::minimax(State *node, int depth, int maximizingPlayer, int alpha, int beta){
+int Random::minimax(State *node, int depth, bool maximizingPlayer, int alpha, int beta){
 
   if(depth==0 || node->game_state==WIN||node->game_state==DRAW){
       return node->evaluate();
@@ -31,7 +31,7 @@ int Random::minimax(State *node, int depth, int maximizingPlayer, int alpha, int
         auto actions = node->legal_actions;
         for(auto i = actions.begin();i!=actions.end();i++){
           auto child = node->next_state(*i);
-          value = std::max(value, minimax(child, depth-1, 0, alpha,beta));
+          value = std::max(value, minimax(child, depth-1, false, alpha,beta));
           alpha = std::max(alpha,value);
           if(alpha>=beta){
             break;
@@ -45,7 +45,7 @@ int Random::minimax(State *node, int depth, int maximizingPlayer, int alpha, int
     auto actions = node->legal_actions;
     for(auto i = actions.begin();i!=actions.end();i++){
           auto child = node->next_state(*i);
-          value = std::min(value, minimax(child, depth-1, 1, alpha,beta));
+          value = std::min(value, minimax(child, depth-1, true, alpha,beta));
           beta = std::min(beta,value);
           if(beta<=alpha){
             break;
@@ -58,18 +58,34 @@ int Random::minimax(State *node, int depth, int maximizingPlayer, int alpha, int
 
 
 Move Random::get_move(State *state, int depth){
-  int bestValue = INT_MIN;
-  Move idealMove (Point(-1,-1),Point(-1,-1));
-  state->get_legal_actions();
-  auto actionsList = state->legal_actions;
-  for(auto i = actionsList.begin();i!=actionsList.end();i++){
-      State *temp = state->next_state(*i);
-      int value = minimax(temp, 5, state->player, INT_MIN,INT_MAX);
-      if(value>bestValue){
-        bestValue=value;
-        idealMove = *i;
+  if(!state->player){
+      int bestValue = INT_MIN;
+      Move idealMove (Point(-1,-1),Point(-1,-1));
+      state->get_legal_actions();
+      auto actionsList = state->legal_actions;
+      for(auto i = actionsList.begin();i!=actionsList.end();i++){
+          State *temp = state->next_state(*i);
+          int value = minimax(temp, depth-1, false, INT_MIN,INT_MAX);
+          if(value>bestValue){
+            bestValue=value;
+            idealMove = *i;
+          }
       }
+      return idealMove; 
   }
-  return idealMove; 
+  else{
+      int bestValue = INT_MAX;
+      Move idealMove (Point(-1,-1),Point(-1,-1));
+      state->get_legal_actions();
+      auto actionsList = state->legal_actions;
+      for(auto i = actionsList.begin();i!=actionsList.end();i++){
+          State *temp = state->next_state(*i);
+          int value = minimax(temp, depth-1, true, INT_MIN,INT_MAX);
+          if(value<bestValue){
+            bestValue=value;
+            idealMove = *i;
+          }
+      }
+      return idealMove;
+  }
 }
-
