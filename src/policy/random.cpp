@@ -22,7 +22,8 @@ static std::string x_axis = "ABCDE";
 
 int Random::minimax(State *node, int depth, bool maximizingPlayer, int alpha, int beta){
 
-  if(depth==0 || node->game_state==WIN||node->game_state==DRAW){
+node->get_legal_actions();
+  if(depth==0 || node->game_state==WIN||node->game_state==DRAW||node->legal_actions.size() == 0){
       return node->evaluate();
   }
   if(maximizingPlayer){

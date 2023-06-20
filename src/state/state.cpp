@@ -14,7 +14,12 @@
   int weights[3][8][6][5] = {
     {
       {
-        //Empty
+         { 0, 0, 0, 0, 0 },
+      { 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 }
       },
       {
         //Pawn
@@ -74,6 +79,13 @@
   {
        {
       //Empty
+        
+      { 0, 0, 0, 0, 0 },
+      { 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 },
+        { 0, 0, 0, 0, 0 }
     },
     {
       //Pawn
@@ -144,10 +156,10 @@ int counter=0;
 int State::evaluate() {
   counter += 1;
   int total = 0;
-  int ourEval=0;
-  int enemyEval = 0;
+  int whiteEval=0;
+  int blackEval = 0;
 
-  int values[8]={0,2,6,7,8,20,100};
+  int values[8]={0,100,320,330,500,900,20000};
   
   for (int i = 0; i < 6; i++) {
     for (int j = 0; j < 5; j++) {
@@ -156,12 +168,12 @@ int State::evaluate() {
       //black
       // blackEval+=(values[(int)(this->board.board[1][i][j])] + blackPositionWeights[i][j]); // Add value for player's pieces
 
-      ourEval+=(values[(int)(this->board.board[this->player][i][j])]) + weights[this->player][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
-      enemyEval+=(values[(int)(this->board.board[1-this->player][i][j])]) + weights[this->player][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
+      // whiteEval+=(values[(int)(this->board.board[0][i][j])]) + weights[0][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
+      // blackEval+=(values[(int)(this->board.board[1][i][j])]) + weights[1][(int)(this->board.board[1][i][j])][i][j]; // Add value for player's pieces
 
     
-      // ourEval+=(values[(int)(this->board.board[this->player][i][j])]); // Add value for player's pieces
-      // enemyEval+=(values[(int)(this->board.board[1-this->player][i][j])]); // Add value for player's pieces
+      whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
+      blackEval+=(values[(int)(this->board.board[1][i][j])]); // Add value for player's pieces
 
 
     //  whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
@@ -170,7 +182,7 @@ int State::evaluate() {
 
     }
   }
-  total = ourEval-enemyEval;
+  total = whiteEval-blackEval;
   // log<<"total is "<<total<<std::endl;
   
   return total;
