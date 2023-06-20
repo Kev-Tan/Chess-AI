@@ -168,12 +168,12 @@ int State::evaluate() {
       //black
       // blackEval+=(values[(int)(this->board.board[1][i][j])] + blackPositionWeights[i][j]); // Add value for player's pieces
 
-      // whiteEval+=(values[(int)(this->board.board[0][i][j])]) + weights[0][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
-      // blackEval+=(values[(int)(this->board.board[1][i][j])]) + weights[1][(int)(this->board.board[1][i][j])][i][j]; // Add value for player's pieces
+      whiteEval+=(values[(int)(this->board.board[0][i][j])]) + weights[0][(int)(this->board.board[0][i][j])][i][j]; // Add value for player's pieces
+      blackEval+=(values[(int)(this->board.board[1][i][j])]) + weights[1][(int)(this->board.board[1][i][j])][i][j]; // Add value for player's pieces
 
     
-      whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
-      blackEval+=(values[(int)(this->board.board[1][i][j])]); // Add value for player's pieces
+      // whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
+      // blackEval+=(values[(int)(this->board.board[1][i][j])]); // Add value for player's pieces
 
 
     //  whiteEval+=(values[(int)(this->board.board[0][i][j])]); // Add value for player's pieces
